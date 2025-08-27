@@ -2,12 +2,14 @@
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "backend",
   "main": "src/index.ts",
-  "compatibility_date": "2025-08-26"
+  "compatibility_date": "2025-08-26",
   // "compatibility_flags": [
   //   "nodejs_compat"
   // ],
   "vars": {
-    "GATEWAY_API_KEY": "vck_4BUjg8CPJmECQ3D89paKX9B3nLbpWEZcQPcfYBSG1r0GTbnsKf0XrS4K"
+    "GATEWAY_API_KEY": "vck_4BUjg8CPJmECQ3D89paKX9B3nLbpWEZcQPcfYBSG1r0GTbnsKf0XrS4K",
+    "WOOCOMMERCE_API_KEY": "ck_0bf6590ff9813bcf6b9a4f503f28db180ac023b5",
+    "WOOCOMMERCE_API_SECRET": "cs_a51e97a2a4e00032673c7c00a12be65d65e5c278"
   }
   // "kv_namespaces": [
   //   {
