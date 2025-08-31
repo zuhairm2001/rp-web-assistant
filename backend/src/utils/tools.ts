@@ -1,4 +1,13 @@
 import z from "zod";
 import { tool } from "ai";
 
-const
+export const getWooCommerceProducts = tool({
+  name: "getWooCommerceProducts",
+  description: "Get WooCommerce products link and information",
+  inputSchema: z.object({
+    name: z.string().describe("The name of the product"),
+  }),
+  execute: async ({ name }) => {
+    return `https://example.com/products/${name}`;
+  },
+});
