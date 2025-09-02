@@ -147,4 +147,5 @@ export const Product = z
   // Use .passthrough() to allow additional fields that we don't care about
   .passthrough();
 
+export const ProductArray = z.array(Product);
 export type ProductSchema = z.infer<typeof Product>;

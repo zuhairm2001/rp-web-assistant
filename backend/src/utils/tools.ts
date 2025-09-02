@@ -11,3 +11,9 @@ export const getWooCommerceProducts = tool({
     return `https://example.com/products/${name}`;
   },
 });
+
+//calendar booking tool --> spawn cal.com atom for booking
+
+//human handoff --> get user's email + phone number
+
+//get service info --> vector rag service documents
