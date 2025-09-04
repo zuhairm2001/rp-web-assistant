@@ -5,7 +5,7 @@ const BASEURL = `https://riskprofs.com/wp-json/wc/v3`;
 const KEY = Bun.env.WOOCOMMERCE_API_KEY;
 const SECRET = Bun.env.WOOCOMMERCE_API_SECRET;
 
-const getProducts = async () => {
+export const getProducts = async () => {
   const response = await fetch(`${BASEURL}/products`, {
     headers: {
       Authorization: `Basic ${Buffer.from(`${KEY}:${SECRET}`).toString("base64")}`,
