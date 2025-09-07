@@ -33,6 +33,20 @@ export const getWeather = tool({
 
 //get service info --> vector rag service documents
 
+export const getServiceInfo = tool({
+  name: "getInfo",
+  description:
+    "When asked about any specific service, call this tool to get further information about it.",
+  inputSchema: z.object({
+    query: z
+      .string()
+      .describe("Generate best query to search for service information"),
+  }),
+  execute: async ({ query }) => {
+    return `Information about ${query} service.`;
+  },
+});
+
 export const tools: ToolSet = {
   getWooCommerceProducts,
   getWeather,
