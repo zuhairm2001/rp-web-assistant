@@ -11,9 +11,22 @@ export const products = sqliteTable("products", {
   name: text("name").notNull(),
   price: integer("price").notNull(),
   link: text("link").notNull(),
-  category: text("category").notNull(),
+  categories: text("categories"), // Store as JSON string
   downloadable: integer("downloadable").default(0),
 });
+
+// Helper functions for JSON approach
+function categoriesToJson(
+  categories: Array<{ id: number; name: string; slug: string }>,
+): string {
+  return JSON.stringify(categories);
+}
+
+function categoriesFromJson(
+  jsonString: string | null,
+): Array<{ id: number; name: string; slug: string }> {
+  return jsonString ? JSON.parse(jsonString) : [];
+}
 
 export const agentSessions = sqliteTable("agent_sessions", {
   id: integer("id").primaryKey({ autoIncrement: true }),

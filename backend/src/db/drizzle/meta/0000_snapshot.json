@@ -1,11 +1,11 @@
 {
   "version": "6",
   "dialect": "sqlite",
-  "id": "b0cd146f-3992-41ca-b637-06fd3aca9d8b",
+  "id": "3c591a78-08c7-4efd-8b28-9859d3159fa5",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "tables": {
-    "products": {
-      "name": "products",
+    "agent_sessions": {
+      "name": "agent_sessions",
       "columns": {
         "id": {
           "name": "id",
@@ -13,6 +13,141 @@
           "primaryKey": true,
           "notNull": true,
           "autoincrement": true
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "status": {
+          "name": "status",
+          "type": "text(2)",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "tool_call_count": {
+          "name": "tool_call_count",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false,
+          "default": 0
+        },
+        "tools_used": {
+          "name": "tools_used",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false,
+          "default": 0
+        },
+        "tool_calls_successful": {
+          "name": "tool_calls_successful",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false,
+          "default": 0
+        },
+        "tool_calls_failed": {
+          "name": "tool_calls_failed",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false,
+          "default": 0
+        },
+        "total_token_input": {
+          "name": "total_token_input",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false,
+          "default": 0
+        },
+        "total_tokens_output": {
+          "name": "total_tokens_output",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false,
+          "default": 0
+        },
+        "average_response_time": {
+          "name": "average_response_time",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false,
+          "default": 0
+        },
+        "user_provided_info": {
+          "name": "user_provided_info",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false,
+          "default": "''"
+        },
+        "human_escalated": {
+          "name": "human_escalated",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false,
+          "default": 0
+        },
+        "calendar_booking": {
+          "name": "calendar_booking",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false,
+          "default": 0
+        },
+        "user_satisfaction": {
+          "name": "user_satisfaction",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false,
+          "default": 0
+        },
+        "user_feedback": {
+          "name": "user_feedback",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false,
+          "default": "''"
+        },
+        "transcript": {
+          "name": "transcript",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false,
+          "default": "''"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    },
+    "products": {
+      "name": "products",
+      "columns": {
+        "shop_id": {
+          "name": "shop_id",
+          "type": "integer",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": false
         },
         "name": {
           "name": "name",
@@ -35,12 +170,20 @@
           "notNull": true,
           "autoincrement": false
         },
-        "category": {
-          "name": "category",
+        "categories": {
+          "name": "categories",
           "type": "text",
           "primaryKey": false,
-          "notNull": true,
+          "notNull": false,
           "autoincrement": false
+        },
+        "downloadable": {
+          "name": "downloadable",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false,
+          "default": 0
         }
       },
       "indexes": {},

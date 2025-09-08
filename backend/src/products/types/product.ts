@@ -12,13 +12,13 @@ export const DummyProduct = z.object({
 export const Product = z
   .object({
     id: z.number().int(),
-    name: z.string(),
-    slug: z.string(),
-    permalink: z.string(),
-    date_created: z.string(), // WooCommerce returns string dates, not ISO datetime objects
-    date_created_gmt: z.string(),
-    date_modified: z.string(),
-    date_modified_gmt: z.string(),
+    name: z.string().default(""),
+    slug: z.string().default(""),
+    permalink: z.string().default(""),
+    date_created: z.string().nullable().or(z.literal("")).default(""), // WooCommerce can return null for some products
+    date_created_gmt: z.string().nullable().or(z.literal("")).default(""),
+    date_modified: z.string().nullable().or(z.literal("")).default(""),
+    date_modified_gmt: z.string().nullable().or(z.literal("")).default(""),
     type: z
       .enum(["simple", "grouped", "external", "variable"])
       .default("simple"),
@@ -29,20 +29,20 @@ export const Product = z
     catalog_visibility: z
       .enum(["visible", "catalog", "search", "hidden"])
       .default("visible"),
-    description: z.string(),
-    short_description: z.string(),
-    sku: z.string(),
-    price: z.string(),
-    regular_price: z.string(),
-    sale_price: z.string(),
+    description: z.string().default(""),
+    short_description: z.string().default(""),
+    sku: z.string().default(""),
+    price: z.string().default("0"),
+    regular_price: z.string().default("0"),
+    sale_price: z.string().default(""),
     date_on_sale_from: z.string().nullable(),
     date_on_sale_from_gmt: z.string().nullable(),
     date_on_sale_to: z.string().nullable(),
     date_on_sale_to_gmt: z.string().nullable(),
-    price_html: z.string(),
-    on_sale: z.boolean(),
-    purchasable: z.boolean(),
-    total_sales: z.number().int(),
+    price_html: z.string().default(""),
+    on_sale: z.boolean().default(false),
+    purchasable: z.boolean().default(false),
+    total_sales: z.number().int().default(0),
     virtual: z.boolean().default(false),
     downloadable: z.boolean().default(false),
     downloads: z.array(
@@ -54,38 +54,38 @@ export const Product = z
     ),
     download_limit: z.number().int().default(-1),
     download_expiry: z.number().int().default(-1),
-    external_url: z.string(),
-    button_text: z.string(),
+    external_url: z.string().default(""),
+    button_text: z.string().default(""),
     tax_status: z.enum(["taxable", "shipping", "none"]).default("taxable"),
-    tax_class: z.string(),
+    tax_class: z.string().default(""),
     manage_stock: z.boolean().default(false),
     stock_quantity: z.number().int().nullable(),
     stock_status: z
       .enum(["instock", "outofstock", "onbackorder"])
       .default("instock"),
     backorders: z.enum(["no", "notify", "yes"]).default("no"),
-    backorders_allowed: z.boolean(),
-    backordered: z.boolean(),
+    backorders_allowed: z.boolean().default(false),
+    backordered: z.boolean().default(false),
     low_stock_amount: z.number().nullable(), // This field was missing from your schema
     sold_individually: z.boolean().default(false),
-    weight: z.string(),
+    weight: z.string().default(""),
     dimensions: z.object({
-      length: z.string(),
-      width: z.string(),
-      height: z.string(),
+      length: z.string().default(""),
+      width: z.string().default(""),
+      height: z.string().default(""),
     }),
-    shipping_required: z.boolean(),
-    shipping_taxable: z.boolean(),
-    shipping_class: z.string(),
-    shipping_class_id: z.number().int(),
+    shipping_required: z.boolean().default(false),
+    shipping_taxable: z.boolean().default(false),
+    shipping_class: z.string().default(""),
+    shipping_class_id: z.number().int().default(0),
     reviews_allowed: z.boolean().default(true),
-    average_rating: z.string(),
-    rating_count: z.number().int(),
+    average_rating: z.string().default("0"),
+    rating_count: z.number().int().default(0),
     related_ids: z.array(z.number().int()),
     upsell_ids: z.array(z.number().int()),
     cross_sell_ids: z.array(z.number().int()),
-    parent_id: z.number().int(),
-    purchase_note: z.string(),
+    parent_id: z.number().int().default(0),
+    purchase_note: z.string().default(""),
     categories: z.array(
       z.object({
         id: z.number().int(),
@@ -104,13 +104,13 @@ export const Product = z
     images: z.array(
       z.object({
         id: z.number().int(),
-        date_created: z.string(), // Changed from z.iso.datetime()
-        date_created_gmt: z.string(),
-        date_modified: z.string(),
-        date_modified_gmt: z.string(),
+        date_created: z.string().nullable().or(z.literal("")).default(""), // Changed from z.iso.datetime()
+        date_created_gmt: z.string().nullable().or(z.literal("")).default(""),
+        date_modified: z.string().nullable().or(z.literal("")).default(""),
+        date_modified_gmt: z.string().nullable().or(z.literal("")).default(""),
         src: z.string(),
         name: z.string(),
-        alt: z.string(),
+        alt: z.string().default(""),
       }),
     ),
     attributes: z.array(
@@ -132,7 +132,7 @@ export const Product = z
     ),
     variations: z.array(z.number().int()),
     grouped_products: z.array(z.number().int()),
-    menu_order: z.number().int(),
+    menu_order: z.number().int().default(0),
     meta_data: z.array(
       z.object({
         id: z.number().int(),
